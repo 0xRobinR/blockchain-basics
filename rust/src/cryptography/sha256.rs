@@ -26,8 +26,15 @@ fn sig_rotr_1(x: i32) -> i32 {
     return rotr(x, 17) ^ rotr(x, 19) ^ (x >> 10);
 }
 
-fn is_prime(x: i32) -> bool {
+pub fn is_prime(x: i32) -> bool {
     if x <= 1 {
         return false;
     }
+    for i in 2..x {
+        if x % i == 0 {
+            return false;
+        }
+    }
+
+    return true;
 }

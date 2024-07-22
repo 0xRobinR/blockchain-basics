@@ -1,8 +1,10 @@
 mod cryptography;
 
 fn main() {
-    let number = 17;
-    let hash = cryptography::sha256::is_prime(number);
-    println!("{}", hash);
-    println!("{}", 1i32 - 2);
+    // let number = 16;
+    let file_name = "../testfile.txt";
+    let file = std::fs::read(file_name).unwrap();
+    let hash = cryptography::sha256::sha256(&file);
+    // let hash = cryptography::sha256::sha256_constants(8);
+    println!("{:?}", hash);
 }

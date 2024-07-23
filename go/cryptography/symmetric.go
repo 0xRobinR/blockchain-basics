@@ -9,7 +9,7 @@ import (
 	"io"
 )
 
-func symmetricAES(msg string) {
+func SymmetricAES(msg string) {
 	key := []byte("examplekey123456")
 	plaintext := []byte(msg)
 

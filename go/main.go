@@ -18,6 +18,8 @@ func main() {
 	print(cryptography.Sha256(dat))
 	print("\n")
 	print(fileSHA256("../testfile.txt"))
+
+	symmetricAES("blockchain is a way, that keeps centralization away")
 }
 
 // check against the sha256 generator

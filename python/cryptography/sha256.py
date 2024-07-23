@@ -110,5 +110,5 @@ def sha256(m):
     return b''.join(i2b(i) for i in H)
 
 
-with open("testfile.txt", 'rb') as f:
+with open("../testfile.txt", 'rb') as f:
     print(sha256(f.read()).hex())

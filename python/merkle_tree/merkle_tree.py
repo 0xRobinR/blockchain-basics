@@ -4,11 +4,11 @@ from merkle_tree.merkle_leaf import MerkleLeaf
 class MerkleTree:
     def __init__(self, elements) -> None:
         self.elements = elements
-        self.tree = list()
+        self.tree = []
         self.__create_tree()
 
     def __create_tree(self) -> None:
-        nodes = list()
+        nodes = []
         
         e_hashes = [ MerkleLeaf(e) for e in elements ]
         
@@ -47,7 +47,7 @@ elements = [
 ]
 
 # this will take the content as a whole, nice!
-with open("../testfile.txt") as f:
+with open("../testfile.txt", encoding="utf-8") as f:
     elements.append(f.read())
 
 merkle_tree = MerkleTree(elements=elements)

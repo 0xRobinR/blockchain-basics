@@ -1,4 +1,10 @@
-# according to this book, https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf 
+"""
+This module implements the SHA-256 cryptographic hash function as described in
+the NIST FIPS 180-4 publication. It includes various helper functions for bitwise
+operations, prime number generation, and message padding.
+"""
+
+# according to this book, https://nvlpubs.nist.gov/nistpubs/FIPS/NIST.FIPS.180-4.pdf
 # we will follow to develop the sha256 algorithm
 
 import math
@@ -69,7 +75,7 @@ def pad_message(m):
     m = bytearray(m)
     m_len = len(m) * 8
     m.append(0b10000000)
-    
+
     # padding till its in the multiple of 512
     while (len(m) * 8) % 512 != 448:
         m.append(0x00)
@@ -100,7 +106,7 @@ def sha256(m):
 
                 t = (t1 + t2 + t3 + t4) % 2**32
                 W.append(i2b(t))
-            
+
         a, b, c, d, e, f, g, h = H
 
         for t in range(64):
@@ -118,5 +124,5 @@ def sha256(m):
 
         delta = [a, b, c, d, e, f, g, h]
         H = [(i1 + i2) % 2**32 for i1, i2 in zip(H, delta)]
-    
+
     return b''.join(i2b(i) for i in H)

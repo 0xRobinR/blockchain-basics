@@ -1,10 +1,14 @@
 
-import hashlib
+from crypto_lib.sha256 import sha256
 
 
 class MerkleLeaf:
-    def __init__(self, data) -> None:
-        self.hash = self.calc_hash(data)
+    def __init__(self, data: str) -> None:
+        self.data = data
+        self.hash = self.__gen_hash()
     
-    def calc_hash(self, data):
-        return hashlib.sha256(data.encode()).hexdigest()
+    def __gen_hash(self) -> str:
+        return sha256(self.data.encode()).hex()
+    
+    def add(self, d) -> str:
+        return self.hash + d.hash

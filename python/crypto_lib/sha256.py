@@ -3,7 +3,7 @@
 
 import math
 from itertools import count, islice
-import bit_ops as ops
+import crypto_lib.bit_ops as ops
 
 def ch(x, y, z):
     return ops.xor_op(ops.and_op(x, y), ops.and_op(ops.not_op(x), z))
@@ -108,7 +108,3 @@ def sha256(m):
         H = [(i1 + i2) % 2**32 for i1,i2 in zip(H, delta)]
     
     return b''.join(i2b(i) for i in H)
-
-
-with open("../testfile.txt", 'rb') as f:
-    print(sha256(f.read()).hex())

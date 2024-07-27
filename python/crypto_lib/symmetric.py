@@ -1,5 +1,4 @@
 from Crypto.Cipher import AES
-import os
 
 def pad(data):
     length = 16 - (len(data) % 16)

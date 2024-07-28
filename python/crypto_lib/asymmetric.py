@@ -1,7 +1,6 @@
 import random
 from sympy import isprime
 from crypto_lib.sha256 import sha256
-from math import gcd
 
 def generate_large_prime(bits):
     while True:
@@ -17,8 +16,6 @@ def egcd(a, b):
 
 def modinv(a, m):
     g, x, _ = egcd(a, m)
-    if g != 1:
-        raise Exception('Modular inverse does not exist')
     return x % m
 
 def generate_keys(bits=1024):
@@ -28,8 +25,6 @@ def generate_keys(bits=1024):
     n = p * q
     phi = (p - 1) * (q - 1)
     e = 65537
-    if gcd(e, phi) != 1:
-        raise Exception('e and phi are not coprime')
     d = modinv(e, phi)
     public_key = (e, n)
     private_key = (d, n)

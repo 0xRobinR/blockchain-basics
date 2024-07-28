@@ -15,7 +15,7 @@ def egcd(a, b):
     return g, x - (b // a) * y, y
 
 def modinv(a, m):
-    g, x, _ = egcd(a, m)
+    _, x, _ = egcd(a, m)
     return x % m
 
 def generate_keys(bits=1024):

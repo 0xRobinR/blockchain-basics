@@ -7,20 +7,8 @@ import (
 	"os"
 
 	"github.com/0xrobinr/blockchain-stack/go/cryptography"
+	"github.com/0xrobinr/blockchain-stack/go/merkleTree"
 )
-
-func main() {
-	dat, error := os.ReadFile("../testfile.txt")
-	if error != nil {
-		panic(error)
-	}
-
-	print(cryptography.Sha256(dat))
-	print("\n")
-	print(fileSHA256("../testfile.txt"))
-
-	cryptography.SymmetricAES("blockchain is a way, that keeps centralization away")
-}
 
 // check against the sha256 generator
 func fileSHA256(filePath string) string {
@@ -36,4 +24,24 @@ func fileSHA256(filePath string) string {
 	}
 
 	return hex.EncodeToString(hasher.Sum(nil))
+}
+
+func main() {
+
+	// testing sha256 hash function
+	dat, error := os.ReadFile("../testfile.txt")
+	if error != nil {
+		panic(error)
+	}
+
+	print(cryptography.Sha256(dat))
+	print("\n")
+	print(fileSHA256("../testfile.txt"))
+
+	// tesitng symmetric key encryption
+	cryptography.SymmetricAES("blockchain is a way, that keeps centralization away")
+
+	// testing merkle tree
+	elements := []string{"why", "is", "it", "required", "to", "be", "a", "list", "?"}
+	print(merkleTree.NewMerkleTree(elements).GetRoot())
 }

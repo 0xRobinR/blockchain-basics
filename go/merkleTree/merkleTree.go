@@ -43,3 +43,5 @@ func (mt *MerkleTree) GetRoot() string {
 	}
 	return mt.tree[len(mt.tree)-1][0].hash
 }
+
+// this is merkle tree
